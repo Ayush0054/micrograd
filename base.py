@@ -126,8 +126,8 @@ L = d * f; L.label = 'L'
 
 # -------------------or just do this 
 
-L.backward()
-dot = draw_dot(L)
+# L.backward()
+# dot = draw_dot(L)
 
-dot.render("graph", view=True , directory="/Users/ayushjha/Desktop/lab/ml/neural-network-from-scratch/Micrograd/")  # writes graph.svg and opens it
+# dot.render("graph", view=True , directory="/Users/ayushjha/Desktop/lab/ml/neural-network-from-scratch/Micrograd/")  # writes graph.svg and opens it
 
