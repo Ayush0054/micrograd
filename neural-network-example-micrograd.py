@@ -13,13 +13,13 @@ x1w1 = x1*w1; x1w1.label = 'x1*w1'
 x2w2 = x2*w2; x2w2.label = 'x2*w2'
 x1w1x2w2 = x1w1 + x2w2; x1w1x2w2.label = 'x1*w1 + x2*w2'
 n = x1w1x2w2 + b; n.label = 'n'
-o = n.tanh(); o.label = 'o'
-
-
-
+# o = n.tanh(); o.label = 'o' 
+# instead of tanh lets break it into atoms
+e = (2*n).exp()
+o = (e-1) / (e+1)
 
 o.backward()
 dot = draw_dot(o)
 
-dot.render("one-neuron-gradient", view=True , directory="/Users/ayushjha/Desktop/lab/ml/neural-network-from-scratch/Micrograd/")  # writes graph.svg and opens it
+dot.render("one-neuron-gradient-second", view=True , directory="/Users/ayushjha/Desktop/lab/ml/neural-network-from-scratch/Micrograd/")  # writes graph.svg and opens it
 
