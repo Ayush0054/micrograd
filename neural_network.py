@@ -17,11 +17,12 @@ class Neuron:
        out = act.tanh()
       #  print(out)
        return out 
-
+    def parameters(self):
+      return self.w + [self.b]
 # x =[2.0 , 3.0]
 # n = Neuron(2)
 # n(x)
-# return random output Value(data=0.3628976512390918)
+# return random output Value(data=0.3628976512390918) , one output
 
 class Layer:
     def __init__(self, nin, nout):
@@ -30,12 +31,13 @@ class Layer:
     def __call__(self, x):
         outs = [n(x) for n in self.neurons]
         return outs[0] if len(outs) == 1 else outs
-
+    def parameters(self):
+      return [p for neuron in self.neurons for p in neuron.parameters()]
   
 # x =[2.0 , 3.0]
 # n = Layer(2,3)
 # n(x)
-#[Value(data=-0.9669850169537446), Value(data=0.6958752842093446), Value(data=0.6487042565405848)]
+#[Value(data=-0.9669850169537446), Value(data=0.6958752842093446), Value(data=0.6487042565405848)]. 3 outputs
 
 class MLP:
   
@@ -47,11 +49,13 @@ class MLP:
     for layer in self.layers:
       x = layer(x)
     return x
-  
-x =[2.0 , 3.0 , -1.0]
-n = MLP(3, [4,4,1])
+  def parameters(self):
+    return [p for layer in self.layers for p in layer.parameters()]
+x =[2.0 , 3.0 , -1.0] # check tinydatasets.py for whole data set
+n = MLP(3, [4,4,1]) # one output 
 n(x)
 
+print(n(x))
 # dot = draw_dot(n(x))
 
 # dot.render("mlp", view=True , directory="/Users/ayushjha/Desktop/lab/ml/neural-network-from-scratch/Micrograd/")  # writes graph.svg and opens it
